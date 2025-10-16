@@ -1,10 +1,6 @@
 import requests, re, json,time, random, os
 from datetime import datetime, timedelta
 
-corpid = os.getenv("WX_CORPID")
-corpsecret = os.getenv("WX_CORPSECRET")
-BarkKey = os.getenv("BARK_KEY")
-
 def get_request():
     BOSHI_msgs = ""
     AUTD_msgs = ""
@@ -347,4 +343,5 @@ def run():
 if __name__ == "__main__":
 
     run()
+
 
