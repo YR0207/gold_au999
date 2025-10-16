@@ -29,4 +29,4 @@ jobs:
           WX_CORPSECRET: ${{ secrets.WX_CORPSECRET }}
           BARK_KEY: ${{ secrets.BARK_KEY }}
         run: |
-          python gold_price.py 2>&1 | tee -a script_output.log
+          python gold_price.py > script_output.log 2>&1 | tee -a script_output.log
