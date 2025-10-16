@@ -1,0 +1,33 @@
+name: 📈 Gold Price Auto Push (WeChat + Bark)
+
+on:
+  schedule:
+    - cron: '30 15 * * *'  # 每30分钟运行一次
+  workflow_dispatch:
+
+jobs:
+  run-gold:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run gold monitor script
+        env:
+          WX_CORPID: ${{ secrets.WX_CORPID }}
+          WX_CORPSECRET: ${{ secrets.WX_CORPSECRET }}
+          BARK_KEY: ${{ secrets.BARK_KEY }}
+        run: |
+          python gold_price.py > script_output.log 2>&1
+          echo "Python脚本执行完成"
