@@ -2,7 +2,7 @@ name: 📈 Gold Price Auto Push (WeChat + Bark)
 
 on:
   schedule:
-    - cron: '31 15 * * 1-5'  # 每30分钟运行一次
+    - cron: '31 7 * * 1-5'  # 每30分钟运行一次
   workflow_dispatch:
 
 jobs:
