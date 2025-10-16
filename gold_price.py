@@ -48,6 +48,8 @@ def get_request():
                     increase_percent = (float(autd_value) - float(today_start_value)) / float(today_start_value) * 100
                     BOSHI_msgs = get_price()
                     AUTD_msgs = f"[{time.strftime('%H:%M:%S')}] 国内黄金实时价格：{autd_value} 今日开盘价格：{today_start_value} 当前涨幅：{increase_percent:.2f}%  "
+                elif 'hq_str_hf_GC' in line:
+                    pass
                 elif 'hq_str_hf_XAU' in line:
                     # 现货黄金实时价格
                     autd_value = line.split('=')[1].split(',')[0].strip('"')
@@ -343,6 +345,7 @@ def run():
 if __name__ == "__main__":
 
     run()
+
 
 
 
