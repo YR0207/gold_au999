@@ -294,7 +294,7 @@ def send_telegram_message(message, XAU_msg):
 
 def Bark(message):
     BarkKey = os.getenv("BARK_KEY")
-    if not bark_key:
+    if not BarkKey:
         print("⚠️ 未设置 BARK_KEY，跳过 Bark 通知")
         return False
     headers = {
@@ -343,6 +343,7 @@ def run():
 if __name__ == "__main__":
 
     run()
+
 
 
 
