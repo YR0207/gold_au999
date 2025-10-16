@@ -330,8 +330,8 @@ def run():
         telegram_msg = format_telegram_message(gold_data)
         XAU_msg = get_request()
         # 发送到 Telegram
-        # send_telegram_message(telegram_msg, XAU_msg)
-        # Bark(XAU_msg)
+        send_telegram_message(telegram_msg, XAU_msg)
+        Bark(XAU_msg)
         # Bark(telegram_msg)
     else:
         print("\n❌ 获取数据失败")
@@ -343,5 +343,6 @@ def run():
 if __name__ == "__main__":
 
     run()
+
 
 
