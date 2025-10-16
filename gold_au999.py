@@ -1,6 +1,9 @@
-import requests, re, json,time, random
+import requests, re, json,time, random, os
 from datetime import datetime, timedelta
 
+corpid = os.getenv("WX_CORPID")
+corpsecret = os.getenv("WX_CORPSECRET")
+BarkKey = os.getenv("BARK_KEY")
 
 def get_request():
     BOSHI_msgs = ""
@@ -242,8 +245,8 @@ def format_telegram_message(data):
 def send_telegram_message(message, XAU_msg):
     """发送消息到 Telegram"""
     # 发送至企业微信
-    corpid = "wwe11a5be7fd163e38"  # 企业ID
-    corpsecret = "RXJ_zT0JE6t-dvkFYBJe8nk75zeWpYDI0zHX9ASohkg"  # Secret
+    corpid = corpid  # 企业ID
+    corpsecret = corpsecret  # Secret
     Agentid = "1000003"
     headers = {
         "accept": "application/json, text/plain, */*",
@@ -294,7 +297,7 @@ def Bark(message):
     headers = {
         "Content-Type": "application/json; charset=utf-8"
     }
-    url = "https://api.day.app/Bt66kBfHey8kWU6zLHACtR"
+    url = f"https://api.day.app/{BarkKey}"
     title = message
     message = message.replace("<div>", "").replace("</div>", "").replace("<ul>",  "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<span>", "\n").replace("</span>", "")
     if "最新价" in message:
@@ -335,4 +338,5 @@ def run():
         # Bark("❌ 黄金价格获取失败，请检查日志")
 
 if __name__ == "__main__":
+
     run()
