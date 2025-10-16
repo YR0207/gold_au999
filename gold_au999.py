@@ -245,9 +245,12 @@ def format_telegram_message(data):
 def send_telegram_message(message, XAU_msg):
     """发送消息到 Telegram"""
     # 发送至企业微信
-    corpid = corpid  # 企业ID
-    corpsecret = corpsecret  # Secret
+    corpid = os.getenv("WX_CORPID")  # 企业ID
+    corpsecret = os.getenv("WX_CORPSECRET")  # Secret
     Agentid = "1000003"
+    if not corpid or not corpsecret:
+        print("⚠️ 企业微信环境变量未设置")
+        return False
     headers = {
         "accept": "application/json, text/plain, */*",
         "accept-encoding": "gzip, deflate, br",
@@ -294,6 +297,10 @@ def send_telegram_message(message, XAU_msg):
 
 
 def Bark(message):
+    BarkKey = os.getenv("BARK_KEY")
+    if not bark_key:
+        print("⚠️ 未设置 BARK_KEY，跳过 Bark 通知")
+        return False
     headers = {
         "Content-Type": "application/json; charset=utf-8"
     }
@@ -340,3 +347,4 @@ def run():
 if __name__ == "__main__":
 
     run()
+
